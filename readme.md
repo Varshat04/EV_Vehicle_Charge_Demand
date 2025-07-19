@@ -51,8 +51,7 @@ As electric vehicle (EV) adoption surges, planners need to anticipate infrastruc
 ## 📂 Files Included
 
 - `EV_Adoption_Forecasting.ipynb` - Main notebook
-- `decision_tree_ev_forecasting.png` - Visual representation of a decision tree model.
-
+- 
 ---
 
 ## 🚀 Future Improvements
