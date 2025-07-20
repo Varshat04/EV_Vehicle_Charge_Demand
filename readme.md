@@ -51,7 +51,7 @@ As electric vehicle (EV) adoption surges, planners need to anticipate infrastruc
 ## 📂 Files Included
 
 - `EV_Adoption_Forecasting.ipynb` - Main notebook
-- 
+
 ---
 
 ## 🚀 Future Improvements
