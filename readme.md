@@ -1,67 +1,73 @@
 # 🔋 EV Adoption Forecasting using Machine Learning
 
 ## 📌 Problem Statement
-As electric vehicle (EV) adoption surges, planners need to anticipate infrastructure needs, especially for charging stations. Inadequate planning may result in bottlenecks and low user satisfaction.
+As electric vehicle (EV) adoption surges, urban planners and policymakers must anticipate infrastructure needs—especially for charging stations. Inadequate planning can lead to bottlenecks, congestion, and reduced user satisfaction.
 
-**Goal:** Forecast future EV adoption based on historical registration data across Washington State counties using a regression model.
+**🎯 Goal:**  
+Forecast future EV adoption across Washington State counties using historical registration data. The prediction helps inform smarter infrastructure deployment and long-term energy planning.
 
 ---
 
-## 📊 Dataset
+## 📊 Dataset Overview
 
-- **Source:** [Kaggle](https://www.kaggle.com/datasets/sahirmaharajj/electric-vehicle-population-size-2024)
-- **Period:** Jan 2017 – Feb 2024
+- **Source:** [Kaggle - EV Population Size 2024](https://www.kaggle.com/datasets/sahirmaharajj/electric-vehicle-population-size-2024)
+- **Timeframe:** January 2017 – February 2024
 - **Key Features:**
-  - County, State, Vehicle Type (Passenger/Truck)
-  - EV Type: BEV, PHEV
-  - Percent of EVs
-  - Total Vehicles
+  - `County`, `State`
+  - `Vehicle Type` (e.g., Passenger, Truck)
+  - `EV Type`: BEV (Battery EV), PHEV (Plug-in Hybrid EV)
+  - `% EVs`, `Total Vehicles`
 
 ---
 
-## 🔧 Workflow
+## 🔧 Workflow Summary
 
-### 1. Data Cleaning
-- Parsed `Date` column to datetime.
-- Handled missing values in `County` and `State`.
-- Converted EV count columns from strings to integers.
+### 1️⃣ Data Cleaning
+- Parsed `Date` column to datetime format.
+- Removed or imputed missing values in `County` and `State`.
+- Converted EV-related numeric columns from string to integers.
 
-### 2. Feature Engineering
-- Extracted `Year`, `Month` from date.
-- Encoded categorical variables like `Vehicle Primary Use` and `County`.
+### 2️⃣ Feature Engineering
+- Extracted `Year` and `Month` from date.
+- Encoded categorical features (e.g., `County`, `Vehicle Primary Use`).
 
-### 3. Modeling
-- Trained a **Random Forest Regressor** on:
-  - Features: Year, Month, Vehicle Use, County
-  - Target: Total EVs
-- Evaluated with MAE, RMSE, and R² metrics.
+### 3️⃣ Model Building
+- **Model Used:** Random Forest Regressor
+- **Features:** `Year`, `Month`, `Vehicle Use`, `County`
+- **Target:** Total EVs
 
-### 4. Forecasting
-- Predicted EV adoption for 2024–2026 based on past trends.
+### 4️⃣ Forecasting
+- Generated EV adoption predictions from **2024 to 2026**.
+- Trends indicate consistent year-on-year growth.
 
 ---
 
 ## 📈 Results
 
-- Forecast shows steady growth in EV registrations.
-- Model performed well with acceptable error margins.
+- Model achieved acceptable accuracy on validation data.
+- EV adoption projected to **increase steadily** in most counties.
+- Urban counties showed significantly higher growth rates.
 
 ---
 
 ## 📂 Files Included
 
-- `EV_Adoption_Forecasting.ipynb` - Main notebook
+| File Name | Description |
+|-----------|-------------|
+| `EV_Adoption_Forecasting.ipynb` | Jupyter Notebook with full pipeline |
+| `preprocessed_ev_data.csv` | Cleaned & feature-engineered dataset |
+| `forecasting_ev_model.pkl` | Trained Random Forest model |
 
 ---
 
 ## 🚀 Future Improvements
 
-- Use XGBoost or LSTM models for better performance.
-- Include economic and policy data as external features.
-- Integrate geospatial analysis for charging station planning.
+- Try **XGBoost**, **Prophet**, or **LSTM** models for time-series enhancements.
+- Include external data (e.g., fuel prices, policy incentives).
+- Use **geospatial clustering** to assist charging station deployment.
 
 ---
 
 ## 👤 Author
 
-Varsha Tiwari
+**Varsha Tiwari**  
