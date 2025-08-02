@@ -1,21 +1,22 @@
 # 🔋 EV Adoption Forecasting using Machine Learning
 
 ## 📌 Problem Statement
-As electric vehicle (EV) adoption surges, urban planners and policymakers must anticipate infrastructure needs—especially for charging stations. Inadequate planning can lead to bottlenecks, congestion, and reduced user satisfaction.
+
+As electric vehicle (EV) adoption rapidly increases, planners and policymakers must forecast infrastructure demands—especially for EV charging stations. Without proper forecasting, cities may face overloaded infrastructure, low user satisfaction, and inefficient planning.
 
 **🎯 Goal:**  
-Forecast future EV adoption across Washington State counties using historical registration data. The prediction helps inform smarter infrastructure deployment and long-term energy planning.
+To predict future EV adoption across Washington State counties using historical registration data, enabling smarter EV infrastructure deployment and long-term policy decisions.
 
 ---
 
 ## 📊 Dataset Overview
 
 - **Source:** [Kaggle - EV Population Size 2024](https://www.kaggle.com/datasets/sahirmaharajj/electric-vehicle-population-size-2024)
-- **Timeframe:** January 2017 – February 2024
+- **Period Covered:** January 2017 – February 2024
 - **Key Features:**
   - `County`, `State`
-  - `Vehicle Type` (e.g., Passenger, Truck)
-  - `EV Type`: BEV (Battery EV), PHEV (Plug-in Hybrid EV)
+  - `Vehicle Type` (Passenger, Truck)
+  - `EV Type`: BEV (Battery Electric Vehicle), PHEV (Plug-in Hybrid Electric Vehicle)
   - `% EVs`, `Total Vehicles`
 
 ---
@@ -23,51 +24,49 @@ Forecast future EV adoption across Washington State counties using historical re
 ## 🔧 Workflow Summary
 
 ### 1️⃣ Data Cleaning
-- Parsed `Date` column to datetime format.
-- Removed or imputed missing values in `County` and `State`.
-- Converted EV-related numeric columns from string to integers.
+- Converted `Date` to datetime format.
+- Handled missing values in `County` and `State`.
+- Cleaned and converted numeric EV columns.
 
 ### 2️⃣ Feature Engineering
-- Extracted `Year` and `Month` from date.
-- Encoded categorical features (e.g., `County`, `Vehicle Primary Use`).
+- Generated lag, rolling mean, and percent change features.
+- Encoded categorical variables (`County`, `Vehicle Use`) for modeling.
+- Created a time progression variable (`months_since_start`).
 
 ### 3️⃣ Model Building
 - **Model Used:** Random Forest Regressor
-- **Features:** `Year`, `Month`, `Vehicle Use`, `County`
-- **Target:** Total EVs
+- **Features Used in Model:**
+  - `months_since_start`, `county_encoded`
+  - `ev_total_lag1`, `ev_total_lag2`, `ev_total_lag3`
+  - `ev_total_roll_mean_3`, `ev_total_pct_change_1`, `ev_total_pct_change_3`
+  - `ev_growth_slope`
+- **Target Variable:** `Electric Vehicle (EV) Total`
 
 ### 4️⃣ Forecasting
-- Generated EV adoption predictions from **2024 to 2026**.
-- Trends indicate consistent year-on-year growth.
+- Forecasted county-wise EV adoption for the next **36 months (2024–2026)**.
+- Integrated results into an interactive Streamlit dashboard.
 
 ---
 
 ## 📈 Results
 
-- Model achieved acceptable accuracy on validation data.
-- EV adoption projected to **increase steadily** in most counties.
-- Urban counties showed significantly higher growth rates.
+- The model forecasts a steady growth in EV adoption across most counties.
+- Urban and high-density counties show steeper adoption curves.
+- Visual dashboard enables comparison across counties with predicted growth percentages.
 
 ---
 
-## 📂 Files Included
+## 🚀 Streamlit Web App
 
-| File Name | Description |
-|-----------|-------------|
-| `EV_Adoption_Forecasting.ipynb` | Jupyter Notebook with full pipeline |
-| `preprocessed_ev_data.csv` | Cleaned & feature-engineered dataset |
-| `forecasting_ev_model.pkl` | Trained Random Forest model |
+An interactive dashboard was built using **Streamlit** to visualize and explore EV adoption trends by county.
 
----
+### 🎯 Key Features:
+- Forecast EV totals and cumulative growth for any selected county.
+- Compare EV adoption trends across up to 3 counties.
+- Visual summary of 3-year projected EV growth with intuitive charts.
 
-## 🚀 Future Improvements
+📸 ![Dashboard Preview](ev-car-factory.jpg)
 
-- Try **XGBoost**, **Prophet**, or **LSTM** models for time-series enhancements.
-- Include external data (e.g., fuel prices, policy incentives).
-- Use **geospatial clustering** to assist charging station deployment.
-
----
-
-## 👤 Author
-
-**Varsha Tiwari**  
+To run locally:
+```bash
+streamlit run app.py
